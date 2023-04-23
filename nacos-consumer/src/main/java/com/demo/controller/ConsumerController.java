@@ -1,7 +1,7 @@
 package com.demo.controller;
 
 import com.demo.domain.User;
-import com.demo.service.UserServiceClient;
+import com.demo.service.UserServiceConsumer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/consumer")
 public class ConsumerController {
 
-    private final UserServiceClient userServiceClient;
+    private final UserServiceConsumer userServiceConsumer;
 
     @GetMapping("/test")
     public User getUser(String username) {
-        return userServiceClient.getUser(username);
+        return userServiceConsumer.getUser(username);
     }
 }

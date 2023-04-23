@@ -1,8 +1,9 @@
 package com.demo.controller;
 
 import com.demo.domain.User;
-import com.demo.service.UserService;
-import org.springframework.beans.factory.annotation.Value;
+import com.demo.service.UserServiceProvider;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,21 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description: 首页
  */
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/provider")
-public class ProviderController implements UserService {
+public class ProviderController {
 
-    @Value("${server.port}")
-    private String serverPort;
+    private final UserServiceProvider userServiceProvider;
 
-    @Value("${spring.application.name}")
-    private String applicationName;
-
-    @Override
+    @GetMapping("/getUser")
     public User getUser(String username) {
-        User user = new User();
-        user.setUsername(username);
-        user.setApplicationName(applicationName);
-        user.setServerPort(serverPort);
-        return user;
+        return userServiceProvider.getUser(username);
     }
 }

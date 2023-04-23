@@ -8,5 +8,5 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @Description: 用户业务层消费端
  */
 @FeignClient(name = "nacos-provider", path = "/provider")
-public interface UserServiceClient extends UserService {
+public interface UserServiceConsumer extends UserService {
 }
