@@ -7,19 +7,14 @@
         <artifactId>spring-cloud-alibaba-home</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>nacos-provider</artifactId>
+    <artifactId>commons</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>nacos-provider</name>
-    <description>nacos-provider</description>
+    <name>commons</name>
+    <description>commons</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>com.demo</groupId>
-            <artifactId>commons</artifactId>
-            <version>${project.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -28,14 +23,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -60,4 +47,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

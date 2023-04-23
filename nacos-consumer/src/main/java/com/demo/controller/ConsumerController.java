@@ -1,11 +1,11 @@
 package com.demo.controller;
 
+import com.demo.domain.User;
+import com.demo.service.UserServiceClient;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * @Author: xuesong.lei
@@ -14,17 +14,13 @@ import org.springframework.web.client.RestTemplate;
  */
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/consumer")
 public class ConsumerController {
 
-    private final RestTemplate restTemplate;
+    private final UserServiceClient userServiceClient;
 
-    @Value("${service.provider.url}")
-    private String provider;
-
-    @GetMapping(value = "/consumer/{id}")
-    public String getProviderInfo(@PathVariable("id") Integer id) {
-        System.out.println("provider:" + provider);
-        System.out.println("id:" + id);
-        return restTemplate.getForObject(provider + "/provider/" + id, String.class);
+    @GetMapping("/test")
+    public User getUser(String username) {
+        return userServiceClient.getUser(username);
     }
 }

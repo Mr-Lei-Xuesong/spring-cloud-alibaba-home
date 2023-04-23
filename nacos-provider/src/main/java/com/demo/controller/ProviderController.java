@@ -1,8 +1,9 @@
 package com.demo.controller;
 
+import com.demo.domain.User;
+import com.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -11,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description: 首页
  */
 @RestController
-public class ProviderController {
+@RequestMapping("/provider")
+public class ProviderController implements UserService {
 
     @Value("${server.port}")
     private String serverPort;
@@ -19,8 +21,12 @@ public class ProviderController {
     @Value("${spring.application.name}")
     private String applicationName;
 
-    @GetMapping(value = "/provider/{id}")
-    public String getInfo(@PathVariable("id") Integer id) {
-        return "服务名：" + applicationName + "==>端口号： " + serverPort + "==>传入的参数：" + id;
+    @Override
+    public User getUser(String username) {
+        User user = new User();
+        user.setUsername(username);
+        user.setApplicationName(applicationName);
+        user.setServerPort(serverPort);
+        return user;
     }
 }
